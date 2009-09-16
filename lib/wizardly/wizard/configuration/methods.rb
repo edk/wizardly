@@ -222,7 +222,7 @@ PROGRESSION
   def guard_entry 
     if (r = request.env['HTTP_REFERER'])
       h = ::ActionController::Routing::Routes.recognize_path(URI.parse(r).path)
-      return check_progression if (h[:controller]||'') == '#{self.controller_name}'
+      return check_progression if (h[:controller].split('/').last||'') == '#{self.controller_name}'
       self.initial_referer = h unless self.initial_referer
     end
     # coming from outside the controller
@@ -245,7 +245,7 @@ SESSION
   def guard_entry 
     if (r = request.env['HTTP_REFERER'])
       h = ::ActionController::Routing::Routes.recognize_path(URI.parse(r).path)
-      return check_progression if (h[:controller]||'') == '#{self.controller_name}'
+      return check_progression if (h[:controller].split('/').last||'') == '#{self.controller_name}'
       self.initial_referer = h
     else
       self.initial_referer = nil 

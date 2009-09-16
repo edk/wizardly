@@ -1,5 +1,10 @@
 == master
 
+0.0.1.1 / 2009-09-16
+* modified to work with namespaced controllers.  Otherwise
+  guard_entry mistakenly prevents valid step-to-step navigation.
+  - edk
+
 == 0.0.1 / 2009-07-28
 
 * Created wizard implementation for submit_tag buttons
