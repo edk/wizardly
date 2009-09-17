@@ -6,7 +6,9 @@ module ValidationGroup
         # validation groups defined for each model
         base.class_eval do
           cattr_accessor :validation_group_classes
+          cattr_accessor :validation_titles
           self.validation_group_classes = {}
+          self.validation_titles = {}
 					
           def self.validation_group_order; @validation_group_order; end
           def self.validation_groups(all_classes = false)
@@ -31,6 +33,8 @@ module ValidationGroup
         # jeffp: capture the declaration order for this class only (no
         # superclasses)
         (@validation_group_order ||= []) << name.to_sym
+
+        self.validation_titles[name.to_sym] = options[:title]
 
         unless included_modules.include?(InstanceMethods)
           # jeffp: added reader for current_validation_fields
